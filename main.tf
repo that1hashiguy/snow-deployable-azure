@@ -23,7 +23,7 @@ provider "azurerm" {
 }
 
 module "azure-modules" {
-  source  = "app.terraform.io/HashiDemoOrg_001/ilm/azure"
+  source  = "app.terraform.io/hashi-fed-snow-demo-org/ilm/azure"
   version = "1.0.16"
 
   # public_ip_prefix_id = var.pip_prefix
