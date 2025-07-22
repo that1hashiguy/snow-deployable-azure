@@ -30,6 +30,7 @@ module "azure-modules" {
   subnet_id = azurerm_subnet.main.id
   suffix    = "snow"
   ssh-key   = var.ssh-key
+  admin_username = var.username
 }
 
 resource "azurerm_resource_group" "main" {
