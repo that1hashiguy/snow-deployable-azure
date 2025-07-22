@@ -29,7 +29,7 @@ module "azure-modules" {
   # public_ip_prefix_id = var.pip_prefix
   subnet_id = azurerm_subnet.main.id
   suffix    = "snow"
-  ssh-key   = var.ssh-key
+  ssh-key   = var.ssh_key
   admin_username = var.username
 }
 
