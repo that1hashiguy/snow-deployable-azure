@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       version = ">= 4.13.0"
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
     }
   }
 
@@ -24,29 +24,29 @@ provider "azurerm" {
 
 module "azure-modules" {
   source  = "app.terraform.io/HashiDemoOrg_001/ilm/azure"
-  version = "1.0.15"
+  version = "1.0.16"
 
-  public_ip_prefix_id = var.pip_prefix
+  # public_ip_prefix_id = var.pip_prefix
   subnet_id = azurerm_subnet.main.id
-  suffix = "snow"
-  ssh-key = var.ssh-key
+  suffix    = "snow"
+  ssh-key   = var.ssh-key
 }
 
 resource "azurerm_resource_group" "main" {
- name     = "snow-demo-rg"
- location = "eastus"
+  name     = "snow-demo-rg"
+  location = "eastus"
 }
 
 resource "azurerm_virtual_network" "main" {
- address_space       = ["10.0.0.0/24"]
- name = "snow-demo-vnet"
- location            = azurerm_resource_group.main.location
- resource_group_name = azurerm_resource_group.main.name
+  address_space       = ["10.0.0.0/24"]
+  name                = "snow-demo-vnet"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
 }
 
 resource "azurerm_subnet" "main" {
-  name = "snow-demo-snet"
-  resource_group_name = azurerm_resource_group.main.name
+  name                 = "snow-demo-snet"
+  resource_group_name  = azurerm_resource_group.main.name
   virtual_network_name = azurerm_virtual_network.main.name
-  address_prefixes = [ cidrsubnet(azurerm_virtual_network.main.address_space[0], 4, 0) ]
+  address_prefixes     = [cidrsubnet("10.0.0.0/24", 4, 0)]
 }
