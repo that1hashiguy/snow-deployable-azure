@@ -1,4 +1,4 @@
-variable "ssh-key" {
+variable "ssh_key" {
 
 }
 
